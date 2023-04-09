@@ -1,13 +1,10 @@
-// httpモジュールを読み込み、インスタンスを生成
-var http = require('http');
+const express = require('express');
+const app = express();
 
-// HTTPサーバーのイベントハンドラを定義
-http.createServer(function (req, res) {
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
-    // HTTPヘッダを出力
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-
-    // レスポンスの中身を出力
-    res.end('Hello World\n');
-
-}).listen(1337, '127.0.0.1'); // 127.0.0.1の1337番ポートで待機
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}!`);
+});
